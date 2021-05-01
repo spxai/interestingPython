@@ -91,3 +91,95 @@ mc.setBlock(pos.x + 1, pos.y + 2, pos.z, "minecraft:magma_block")
 （2）运行第（1）步输入的脚本
 $python3 sayHello.py
 可在客户端界面的左下角处看到“hello,world”输出。
+运行模式
+有2种常用的运行模式：
+在本地模式下，客户端和服务器端为同一电脑同一IP地址。前面讲解了本地模式的运行方式。
+局域网模式下，服务器端和客户端不在同一台电脑，服务器为局域网服务器。运行方式如下：
+（1）客户端启动后，选择多人，添加并登录本地服务器（局域网服务器的IP地址）。
+（2）首先，在客户端电脑上新建一目录my_world，然后，将前面下载的JuicyRaspberryPie软件包中JuicyRaspberryPie/bukkit/src/main/resources/目录下的文件拷贝my_world目录下，最后，新建sayHello.py程序，程序如下：
+
+# coding:utf8
+
+# 引入mcpi目录下的mcpi.minecraft
+import mcpi.minecraft as minecraft
+import datetime
+
+# 建立mc连接对象
+mc = minecraft.Minecraft.create("192.168.10.9")
+
+
+# 发送消息
+now = datetime.datetime.now()
+nowStr=now.strftime("%Y/%m/%d")
+mc.postToChat(f"今天是：{nowStr}欢迎来到思普兴智能的世界")
+
+# 获得玩家位置
+pos = mc.player.getTilePos()
+# 创建两个block
+mc.setBlock(pos.x + 1, pos.y + 1, pos.z, "minecraft:mossy_cobblestone") #注意： "minecraft:mossy_cobblestone" 而不是48
+mc.setBlock(pos.x + 1, pos.y + 2, pos.z, "minecraft:magma_block")
+
+（3）运行第（3）步输入的脚本
+$python3 sayHello.py
+可在客户端界面的左下角处看到“hello,world”输出。
+4、运行模式
+有2种常用的运行模式：
+在本地模式下，客户端和服务器端为同一电脑同一IP地址。前面讲解了本地模式的运行方式。
+局域网模式下，服务器端和客户端不在同一台电脑，服务器为局域网服务器。运行方式如下：
+（1）客户端启动后，选择多人，添加并登录本地服务器（局域网服务器的IP地址）。
+（2）首先，在客户端电脑上新建一目录my_world，然后，将前面下载的JuicyRaspberryPie软件包中JuicyRaspberryPie/bukkit/src/main/resources/目录下的文件拷贝my_world目录下，最后，新建sayHello.py程序，程序如下：
+
+# coding:utf8
+
+# 引入mcpi目录下的mcpi.minecraft
+import mcpi.minecraft as minecraft
+import datetime
+
+# 建立mc连接对象
+mc = minecraft.Minecraft.create("192.168.10.9")
+
+
+# 发送消息
+now = datetime.datetime.now()
+nowStr=now.strftime("%Y/%m/%d")
+mc.postToChat(f"今天是：{nowStr}欢迎来到思普兴智能的世界")
+
+# 获得玩家位置
+pos = mc.player.getTilePos()
+# 创建两个block
+mc.setBlock(pos.x + 1, pos.y + 1, pos.z, "minecraft:mossy_cobblestone") #注意： "minecraft:mossy_co运行模式
+有2种常用的运行模式：
+在本地模式下，客户端和服务器端为同一电脑同一IP地址。前面讲解了本地模式的运行方式。
+局域网模式下，服务器端和客户端不在同一台电脑，服务器为局域网服务器。运行方式如下：
+（1）客户端启动后，选择多人，添加并登录本地服务器（局域网服务器的IP地址）。
+（2）首先，在客户端电脑上新建一目录my_world，然后，将前面下载的JuicyRaspberryPie软件包中JuicyRaspberryPie/bukkit/src/main/resources/目录下的文件拷贝my_world目录下，最后，新建sayHello.py程序，程序如下：
+
+# coding:utf8
+
+# 引入mcpi目录下的mcpi.minecraft
+import mcpi.minecraft as minecraft
+import datetime
+
+# 建立mc连接对象
+mc = minecraft.Minecraft.create("192.168.10.9")
+
+
+# 发送消息
+now = datetime.datetime.now()
+nowStr=now.strftime("%Y/%m/%d")
+mc.postToChat(f"今天是：{nowStr}欢迎来到思普兴智能的世界")
+
+# 获得玩家位置
+pos = mc.player.getTilePos()
+# 创建两个block
+mc.setBlock(pos.x + 1, pos.y + 1, pos.z, "minecraft:mossy_cobblestone") #注意： "minecraft:mossy_cobblestone" 而不是48
+mc.setBlock(pos.x + 1, pos.y + 2, pos.z, "minecraft:magma_block")
+
+（3）运行第（3）步输入的脚本
+$python3 sayHello.py
+可在客户端界面的左下角处看到“hello,world”输出。bblestone" 而不是48
+mc.setBlock(pos.x + 1, pos.y + 2, pos.z, "minecraft:magma_block")
+
+（3）运行第（3）步输入的脚本
+$python3 sayHello.py
+可在客户端界面的左下角处看到“hello,world”输出。
