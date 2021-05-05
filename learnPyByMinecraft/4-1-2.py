@@ -7,7 +7,7 @@ import datetime
 import time
 
 # 建立mc连接对象
-mc = minecraft.Minecraft.create()
+mc = minecraft.Minecraft.create("192.168.10.9")
 
 
 # 发送消息
