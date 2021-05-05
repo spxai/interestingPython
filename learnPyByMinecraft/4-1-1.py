@@ -1,6 +1,6 @@
 
 # coding:utf8
-
+#4-1-1.py
 # 引入mcpi目录下的mcpi.minecraft
 import mcpi.minecraft as minecraft
 
@@ -10,10 +10,8 @@ mc = minecraft.Minecraft.create("192.168.10.9")
 
 
 # 发送消息
+mc.postToChat("你好，世界！ hello,world!")
 
-while True:    
-    mc.postToChat("你好，世界！")
-    time.sleep(5)
 
 
  
