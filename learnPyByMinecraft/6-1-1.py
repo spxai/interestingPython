@@ -1,6 +1,6 @@
 
 # coding:utf8
-#4-1-1.py
+#6-1-1.py
 # 引入mcpi目录下的mcpi.minecraft
 import mcpi.minecraft as minecraft
 
