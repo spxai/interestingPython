@@ -10,7 +10,8 @@ import zmq
 
 context = zmq.Context()
 socket = context.socket(zmq.PUB)
-socket.bind("tcp://*:4006")
+socket.bind("tcp://*:4005")
+
 def testConnection():
     while True:
         #  Wait for next request from client
