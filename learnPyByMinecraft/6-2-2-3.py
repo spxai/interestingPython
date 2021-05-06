@@ -1,5 +1,5 @@
 #  coding:utf8
-#4-2-2-2.py
+#6-2-2-3.py
 # 引入mcpi目录下的mcpi.minecraft
 import mcpi.minecraft as minecraft
 import random
