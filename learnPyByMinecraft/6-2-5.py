@@ -3,7 +3,8 @@
 #6-2-5.py
 # 引入mcpi目录下的mcpi.minecraft
 import mcpi.minecraft as minecraft
-import time
+
+
 
 
 # 建立mc连接对象
@@ -16,5 +17,5 @@ z=pos.z
 
 #放2个石头砖块
 z=z+5
-mc.setBlock(x,y,z,BLOCK.STONE.id)
-mc.setBlock(x,y+1,z,BLOCK.STONE.id)
+mc.setBlock(x,y,z,103)
+mc.setBlock(x,y+1,z,103)
