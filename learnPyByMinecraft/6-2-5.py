@@ -1,9 +1,8 @@
 
 #  coding:utf8
-#6-2-4.py
+#6-2-5.py
 # 引入mcpi目录下的mcpi.minecraft
 import mcpi.minecraft as minecraft
-import random
 import time
 
 
@@ -11,9 +10,9 @@ import time
 mc = minecraft.Minecraft.create("192.168.10.9")
 
 pos=mc.player.getPos()
-nowX=pos.x
-nowY=pos.y
-nowZ=pos.z
+x=pos.x
+y=pos.y
+z=pos.z
 
 #放2个石头砖块
 z=z+5
