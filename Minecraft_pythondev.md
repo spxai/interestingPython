@@ -133,7 +133,7 @@ mc.postToChat("hello,world")
 # 获得玩家位置
 pos = mc.player.getTilePos()
 # 创建两个block
-mc.setBlock(pos.x + 1, pos.y + 1, pos.z, "minecraft:mossy_cobblestone") #注意： "minecraft:mossy_cobblestone" 而不是48
+mc.setBlock(pos.x + 1, pos.y + 1, pos.z, "minecraft:mossy_cobblestone") 
 mc.setBlock(pos.x + 1, pos.y + 2, pos.z, "minecraft:magma_block")
 ```
 （2）运行第（1）步输入的脚本
