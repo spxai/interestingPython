@@ -61,7 +61,7 @@ online-mode=true改为online-mode=false
 $sudo yum install maven 
 
 $cd ~/Spigot1.16.5
-$git clone https://github.com/wensheng/JuicyRaspberryPie 
+$git clone https://github.com/spxai/JuicyRaspberryPie
 $cd ./JuicyRaspberryPie/bukkit
 $mvn clean package
 $mkdir -p ~/Spigot1.16.5/plugins
