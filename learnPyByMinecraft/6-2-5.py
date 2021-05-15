@@ -15,7 +15,7 @@ x=pos.x
 y=pos.y
 z=pos.z
 
-#放2个石头砖块
-z=z+5
-mc.setBlock(x,y,z,103)
-mc.setBlock(x,y+1,z,103)
+#放2个砖块，下面是石头砖块，上面是泥土砖块
+x=x+1
+mc.setBlock(x,y,z,'stone')
+mc.setBlock(x,y+1,z,'DIRT')
