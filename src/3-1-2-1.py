@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-#3-1-2.py
+#3-1-2-1.py
 import sys, pygame
 
 pygame.init()
