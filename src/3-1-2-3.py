@@ -12,16 +12,20 @@ pygame.display.set_icon(logo)
 bjpic = pygame.image.load(sys.path[0]+"/pic/3-1-1-1/grounds.png")
 bjpicRect = bjpic.get_rect()
 size = width, height =bjpicRect .width*15,bjpicRect .height*15
+screen = pygame.display.set_mode(size)
+bjpic=pygame.Surface.convert(bjpic)
 ball = pygame.image.load(sys.path[0]+"/pic/3-1-2/intro_ball.gif")
+ball=pygame.Surface.convert(ball)
 ballrect = ball.get_rect()
 
-screen = pygame.display.set_mode(size)
+
+
 bjpicWidth=bjpicRect .width
 bjpicHeight=bjpicRect .height
 nowX=0
 nowY=0
 
-speed = [random.randint(5,10), random.randint(5,10)]
+speed = [2,2]
 
 
 while True:
@@ -40,7 +44,7 @@ while True:
     if ballrect.top < 0 or ballrect.bottom > height:
         speed[1] = -speed[1]
     screen.blit(ball, ballrect)
-    pygame.display.flip()
+    pygame.display.update()
 
 
     
