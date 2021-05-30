@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-#2-7-4.py
+#2-7-6.py
 import turtle
 
 lineLen=90
