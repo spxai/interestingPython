@@ -3,15 +3,24 @@
 #2-7-6.py
 import turtle
 
-lineLen=90
+
 ts = turtle.getscreen()
 ts.colormode(255)
-for b in range(0,256):
-    turtle.color(0,0,b)
-    turtle.fd(lineLen)
-    posX,posY=turtle.position()
-    turtle.goto(posX, posY+1)
-    lineLen=-lineLen
+turtle.up()
+turtle.goto(-300,-300)
+turtle.down()
+posX,posY=turtle.position()
+turtle.pensize(2) 
+for r in range(0,256,16):
+    for g in range(0,256,16):
+        for b in range(0,256,16):
+            turtle.color(r,g,b)
+            turtle.fd(6)            
+        posY+=2
+        posX=-300
+        turtle.up()
+        turtle.goto(posX,posY)
+        turtle.down()        
 ts.colormode(1)
 print('按回车键退出')
 input()
