@@ -3,5 +3,5 @@
 #2-7-7-1.py
 x=range(10)
 y=range(10)
-z=[i,j  i,j in zip(x,y)]
+z=[(i,j) for i,j in zip(x,y)]
 print(z)
