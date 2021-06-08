@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #2-8-3-1.py
-import PySimpleGUI as sg                        # Part 1 - The import
+import PySimpleGUI as sg                          # 第1部分-导入
 
-# Define the window's contents
-layout = [  [sg.Text("hello,world")],     # Part 2 - The Layout
+# 定义窗口内容
+layout = [  [sg.Text("hello,world")],       # 第2部分 - 指定层次（The Layout）
             [sg.Text("你好，世界")],
-            [sg.Text("如何称呼您?")],     # Part 2 - The Layout
+            [sg.Text("如何称呼您?")],     
             [sg.Input()],            
             [sg.Button('Ok')] ]
 
-# Create the window
-window = sg.Window('hello world', layout)      # Part 3 - Window Defintion
+# 创建窗口
+window = sg.Window('hello world', layout)      # 第3部分-窗口定义
 
 
-# Display and interact with the Window
-event, values  = window.read()                   # Part 4 - Event loop or Window.read call
+#显示和与窗口交互
+event, values  = window.read()                   # 第4部分-事件循环或调用window.read
 
 print(values[0],",很高兴认识您！")
-# Finish up by removing from the screen
-window.close()                                  # Part 5 - Close the Window
+#最后从屏幕上移除
+window.close()                                   # 第5部分-关闭窗口
