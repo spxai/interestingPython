@@ -12,7 +12,7 @@ for i in range(0,361,30):
 turtle.home()
 turtle.color('Black','red')
 turtle.write(f"[{turtle.position()[0]},\n{turtle.position()[1]}]") 
-turtle.color('Blue','red')
+
 
 print('按回车键退出')
 input()
