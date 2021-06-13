@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #2-7-10-6.py
 
+
 def swapNums(nums):
     temp=nums[0]
     nums[0]=nums[1]
