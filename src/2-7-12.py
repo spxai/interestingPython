@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #2-7-12.py
 import turtle
-import math
+
 
 def getFunY(a,b,c,x):
     y=a*x*x+b*x+c
