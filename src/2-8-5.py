@@ -8,15 +8,14 @@ import time
 
 
 guessNum=rnd.randint(1,100)
-gameShowMess=["玩家停止抽数！","玩家继续抽数：","电脑停止抽数"，"电脑抽数："]
+gameShowMess=["玩家停止抽数！","玩家继续抽数：","电脑停止抽数","电脑抽数："]
 # 定义窗口内容
-layout = [  [sg.Text("请输入您要机器猜的数字(1-100)")],     
-            [sg.Input()],        
-            [sg.Output(size=(40,2), key='-OUTPUT-')],
-            [sg.Button('Ok'), sg.Button('Cancel')] ]
+layout = [  [sg.Text("您是否继续抽数？")],            
+            [sg.Button('Yes'), sg.Button('No'),sg.Button('Cancel')],
+            [sg.Output(size=(40,2), key='-OUTPUT-')]]
 
 # 创建窗口
-window = sg.Window('猜数字游戏', layout)      
+window = sg.Window('21点游戏', layout)      
 
 minNum=1
 maxNum=100
