@@ -14,21 +14,37 @@ computerWin=False
 playerWin=False
 GamePlayer=Enum('GamePlayer', 'COMPUTER PLAYER')
 
-def updateStatus(statusStr,window):
-    window['-OUTPUT-'].update(window['-OUTPUT-'].Get()+ statusStr)
+def UpdateStatus(statusStr,window):
+    window['-OUTPUT-'].update(window['-OUTPUT-'].Get()+ statusStr+"\n")
     
 def AddRndNum(gamePlayer):
     if gamePlayer==GamePlayer.COMPUTER:
         computerNum=rnd.randint(1,10)
         computerNums.append(computerNum)  
         computerNumSum+=computerNum
-        return computerNumSum        
+        return computerNum       
     else:            
         playNum=rnd.randint(1,10)
         playerNums.append(playNum)
         playerNumSum+=playNum
-        return playerNumSum
+        return playerNum
 
+def AddPlayerNum():
+    rndNum=AddRndNum(GamePlayer.PLAYER)
+    UpdateStatus(gameShowMess[1] + str(rndNum) + "!" ,window) 
+    return GetPlayerSum()
+    
+    
+def AddComputerNum():
+    rndNum=AddRndNum(GamePlayer.COMPUTER)
+    UpdateStatus(gameShowMess[3] + str(rndNum) + "!" ,window) 
+    return GetComputerSum()
+    
+def GetPlayerSum():
+    return playerNumSum
+def GetComputerSum():
+    return computerNumSum
+    
 def UpdateIsGameOver(gamePlayer,numSum):
     if gamePlayer==GamePlayer.COMPUTER and numSum>21:
         computerWin=False
@@ -39,7 +55,7 @@ def UpdateIsGameOver(gamePlayer,numSum):
     return (computerWin,playerWin)
 
 def main():   
-    gameShowMess=["玩家停止抽数！","玩家继续抽数：","电脑停止抽数","电脑抽数："]
+    gameShowMess=["玩家停止抽数！","玩家继续抽数：","电脑停止抽数","电脑继续抽数："]
     # 定义窗口内容
     layout = [  [sg.Text("您是否继续抽数？")],            
                 [sg.Button('Yes'), sg.Button('No'),sg.Button('Exit')],
@@ -60,16 +76,16 @@ def main():
             break
         if isPlayerContinue: 
             if event == 'Yes':
-                updateStatus("玩家确定抽数")
+                UpdateStatus("玩家确定抽数",window)
             elif event == 'No':
-                updateStatus("玩家放弃抽数")  
+                UpdateStatus("玩家放弃抽数",window)  
                 isPlayerContinue=False      
         else:
-            updateStatus("玩家放弃抽数")   
+            updateStatus("玩家放弃抽数",window)   
         if isComputerContinue :
-            updateStatus("电脑确定抽数") 
+            updateStatus("电脑确定抽数",window) 
         else:
-            updateStatus("电脑放弃抽数")            
+            updateStatus("电脑放弃抽数",window)            
             
         if isPlayerContinue:  
             (cWin,pWin)=UpdateIsGameOver(GamePlayer.PLAYER,AddPlayerNum())  
@@ -81,27 +97,8 @@ def main():
             #游戏没有结束，继续
   
 
-    
-            
-        int(values[0])
-        gameState=guessNum-playNum
-        while isGameContinue and playNum>=1 and  playNum<=100:  
-            gameState=guessNum-playNum
-            if gameState>0: 
-                gameState=1
-                maxNum=guessNum
+
                 
-            elif gameState<0:
-                gameState=2  
-                minNum=guessNum
-    
-            else:
-                minNum=1
-                maxNum=100  
-                isGameContinue=False   
-            window['-OUTPUT-'].update(window['-OUTPUT-'].Get()+'机器猜的数字是： ' + str(guessNum) + "!"+gameShowMess[gameState])
-            guessNum=int((minNum+maxNum)/2)
-                   
     
     
     #最后从屏幕上移除
