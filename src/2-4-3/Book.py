@@ -1,4 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#2-4-3-Book.py
 class Book:
-    """µ•±æ Èπ‹¿Ì"""
-    def __init__:
+    """‰π¶ÁÆ°ÁêÜ"""
+    def __init__(self,name,author,price):
+        self.name=name
+        self.author=author
+        self.price=price
+    def getInfo(self):
+        return f"‰π¶Âêç:{self.name},‰ΩúËÄÖ:{self.author},‰ª∑Ê†º:{self.price}"
+        
         
