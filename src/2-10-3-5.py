@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*- 
-#2-10-3-3.py
+#2-10-3-5.py
 import base64
 import random
 
@@ -20,23 +20,62 @@ strTxt="""
 """
 
 def getPrimeNumbers(minNum,maxNum):
-    pNs=[]
     import math
     for n in range(minNum,maxNum):
         for i in range(2,int(math.sqrt(n))+1): 
             if  (n%i==0):
                 break            
         else:
-            pNs.append(n)
+            pN=n
             break
-    return pNs
+    return pN
 
+def getGreatestCommonDivisor(a,b):
+    while a != 0:
+        a, b = b % a, a
+    return b
+
+def getAnotherGcd(x):
+    minN=random.randint(x-10000*10000, x-1)     
+    for i in range(minN,x):
+        print("=",end="")
+        if (getGreatestCommonDivisor(i,x)==1):
+            print(">\n找到互质数")
+            break
+    return i  
+
+def getModuloInverse(e,r):
+    d=r-1
+    for i in range(2,r):
+        if i%100000==0: print(".",end="")
+        if ((e*i)%r==1):
+            d=i
+            print("\n找到模逆元")
+            break
+    return d      
+    
+    
+    
 #p,q
-minN=random.randint(10000, 25000) 
+minN=random.randint(10010, 30000) 
 maxN=random.randint(minN+10000, minN+20000) 
 p=getPrimeNumbers(minN,maxN)
-minN=random.randint(1000, 2500) 
+minN=random.randint(10010, 30000) 
 maxN=random.randint(minN+1000, minN+2000) 
 q=getPrimeNumbers(minN,maxN)
 print(p,q)
+#
+N=p*q
+#r
+r=(p-1)*(q-1)
+#e
+e=getAnotherGcd(r)
+#e关于r的模逆元d
+d=getModuloInverse(e,r)
+#公钥，私钥
+pubKey=(N,e)
+priKey=(N,d)
+print(f"\n公钥：({N},{e})\n私钥：({N},{d})")
+
+
 

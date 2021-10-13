@@ -2,11 +2,10 @@
 # -*- coding: utf-8 -*- 
 #2-10-3-4.py
 
+def getGreatestCommonDivisor(a,b):
+    while a != 0:
+        a, b = b % a, a
+    return b
 
-def getGreatestCommonDivisor(n1,n2):
-   
-    return (n1,n2)
-
-
-print(p,q)
+print(getGreatestCommonDivisor(319,377))
 
