@@ -4,6 +4,7 @@
 import PySimpleGUI as sg     
 import random as rnd
 import time
+from enum import Enum
 
 
 playerNums=[]
@@ -13,31 +14,33 @@ computerNumSum=0
 computerWin=False
 playerWin=False
 GamePlayer=Enum('GamePlayer', 'COMPUTER PLAYER')
+gameShowMess=["玩家停止抽数！","玩家继续抽数：","电脑停止抽数","电脑继续抽数："]
 
-def UpdateStatus(statusStr,window):
-    window['-OUTPUT-'].update(window['-OUTPUT-'].Get()+ statusStr+"\n")
+def updateStatus(statusStr,window):
+    window['-OUTPUT-'].update(statusStr+ "\n"+window['-OUTPUT-'].Get())
     
 def AddRndNum(gamePlayer):
+    global  playerNumSum,computerNumSum
     if gamePlayer==GamePlayer.COMPUTER:
         computerNum=rnd.randint(1,10)
         computerNums.append(computerNum)  
         computerNumSum+=computerNum
-        return computerNum       
+        return computerNum   
     else:            
-        playNum=rnd.randint(1,10)
-        playerNums.append(playNum)
-        playerNumSum+=playNum
+        playerNum=rnd.randint(1,10)
+        playerNums.append(playerNum)
+        playerNumSum+=playerNum
         return playerNum
 
-def AddPlayerNum():
-    rndNum=AddRndNum(GamePlayer.PLAYER)
-    UpdateStatus(gameShowMess[1] + str(rndNum) + "!" ,window) 
+def AddPlayerNum(window):
+    nRes=AddRndNum(GamePlayer.PLAYER)
+    updateStatus(gameShowMess[1] + str(nRes) + "!总点数:"+ str(GetPlayerSum()),window) 
     return GetPlayerSum()
     
     
-def AddComputerNum():
-    rndNum=AddRndNum(GamePlayer.COMPUTER)
-    UpdateStatus(gameShowMess[3] + str(rndNum) + "!" ,window) 
+def AddComputerNum(window):
+    nRes=AddRndNum(GamePlayer.COMPUTER)
+    updateStatus(gameShowMess[3] + str(nRes) + "!总点数:"+ str(GetComputerSum()),window) 
     return GetComputerSum()
     
 def GetPlayerSum():
@@ -45,17 +48,18 @@ def GetPlayerSum():
 def GetComputerSum():
     return computerNumSum
     
-def UpdateIsGameOver(gamePlayer,numSum):
-    if gamePlayer==GamePlayer.COMPUTER and numSum>21:
+def UpdateIsGameOver(gamePlayer):
+    computerWin=playerWin=False
+    if gamePlayer==GamePlayer.COMPUTER and GetPlayerSum()>21:
         computerWin=False
         playerWin=True           
-    if gamePlayer==GamePlayer.PLAYER and numSum>21:
+    if gamePlayer==GamePlayer.PLAYER and GetComputerSum()>21:
         computerWin=True
         playerWin=False    
     return (computerWin,playerWin)
 
 def main():   
-    gameShowMess=["玩家停止抽数！","玩家继续抽数：","电脑停止抽数","电脑继续抽数："]
+
     # 定义窗口内容
     layout = [  [sg.Text("您是否继续抽数？")],            
                 [sg.Button('Yes'), sg.Button('No'),sg.Button('Exit')],
@@ -64,8 +68,6 @@ def main():
     # 创建窗口
     window = sg.Window('21点游戏', layout)      
     
-
-
 
     #显示和与窗口交互
     while True:
@@ -76,9 +78,9 @@ def main():
             break
         if isPlayerContinue: 
             if event == 'Yes':
-                UpdateStatus("玩家确定抽数",window)
+                updateStatus("玩家确定抽数",window)
             elif event == 'No':
-                UpdateStatus("玩家放弃抽数",window)  
+                updateStatus("玩家放弃抽数",window)  
                 isPlayerContinue=False      
         else:
             updateStatus("玩家放弃抽数",window)   
@@ -88,13 +90,24 @@ def main():
             updateStatus("电脑放弃抽数",window)            
             
         if isPlayerContinue:  
-            (cWin,pWin)=UpdateIsGameOver(GamePlayer.PLAYER,AddPlayerNum())  
+            AddPlayerNum(window)
+            (cWin,pWin)=UpdateIsGameOver(GamePlayer.PLAYER)  
+            if pWin:
+                updateStatus("玩家赢了",window)  
+                break
+            elif cWin:
+                updateStatus("电脑赢了",window)   
+                break
         if isComputerContinue :
-            (cWin,pWin)=UpdateIsGameOver(GamePlayer.COMPUTER,AddComputerNum())
-        if cWin or pWin:
-            #有一方赢了，游戏结束
-        else:
-            #游戏没有结束，继续
+            AddComputerNum(window)
+            (cWin,pWin)=UpdateIsGameOver(GamePlayer.COMPUTER)
+            if pWin:
+                updateStatus("玩家赢了",window)  
+                break
+            elif cWin:
+                updateStatus("电脑赢了",window)   
+                break
+
   
 
 
