@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-#2-9-2-2.py
+#2-9-3.py
 import re
+
 def updateStack(computeStr,s1,s2,opsPriority):
     m=re.search(r'^(\D+?)',computeStr)    
     strType=''
@@ -55,3 +56,25 @@ for cpStr in center_computer:
     clearStack(tempStack,resStack)
     resStack.reverse()  
     print(resStack)
+    
+    #----逆波兰表达式求解
+    opts=operatorsPriority.keys()
+    runStack=[]
+    while  len(resStack)>0:
+        data=resStack.pop()
+        if data not in opts:
+            runStack.append(data)
+        else:
+            n2=runStack.pop()
+            n1=runStack.pop()
+            result=eval(str(n1)+data+str(n2))
+            runStack.append(result)
+            print(str(n1)+data+str(n2),runStack,resStack)
+    print(f"{cpStr}结果是：{runStack[0]}\n-------------------\n")
+    
+    
+    
+
+
+
+
