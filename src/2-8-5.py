@@ -48,14 +48,15 @@ def GetPlayerSum():
 def GetComputerSum():
     return computerNumSum
     
-def UpdateIsGameOver(gamePlayer):
+def isGameOver():
     computerWin=playerWin=False
-    if gamePlayer==GamePlayer.COMPUTER and GetPlayerSum()>21:
-        computerWin=False
-        playerWin=True           
-    if gamePlayer==GamePlayer.PLAYER and GetComputerSum()>21:
-        computerWin=True
-        playerWin=False    
+    if  GetPlayerSum()>21 and GetComputerSum()<=21 :
+        computerWin=True 
+        playerWin=False          
+    if  GetComputerSum()>21 and GetPlayerSum()<=21:
+        computerWin=False 
+        playerWin=True 
+    
     return (computerWin,playerWin)
 
 def main():   
@@ -87,26 +88,20 @@ def main():
         if isComputerContinue :
             updateStatus("电脑确定抽数",window) 
         else:
-            updateStatus("电脑放弃抽数",window)            
+            updateStatus("电脑放弃抽数",window) 
+            isComputerContinue=False
             
         if isPlayerContinue:  
             AddPlayerNum(window)
-            (cWin,pWin)=UpdateIsGameOver(GamePlayer.PLAYER)  
-            if pWin:
-                updateStatus("玩家赢了",window)  
-                break
-            elif cWin:
-                updateStatus("电脑赢了",window)   
-                break
         if isComputerContinue :
             AddComputerNum(window)
-            (cWin,pWin)=UpdateIsGameOver(GamePlayer.COMPUTER)
-            if pWin:
-                updateStatus("玩家赢了",window)  
-                break
-            elif cWin:
-                updateStatus("电脑赢了",window)   
-                break
+        (cWin,pWin)=isGameOver()
+        if pWin:
+            updateStatus("玩家赢了",window)  
+            break
+        elif cWin:
+            updateStatus("电脑赢了",window)   
+            break
 
   
 
