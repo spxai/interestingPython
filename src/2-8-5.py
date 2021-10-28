@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#      /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #2-8-4-2.py
 import PySimpleGUI as sg     
@@ -16,8 +16,9 @@ playerWin=False
 GamePlayer=Enum('GamePlayer', 'COMPUTER PLAYER')
 gameShowMess=["玩家停止抽数！","玩家继续抽数：","电脑停止抽数","电脑继续抽数："]
 
-def updateStatus(statusStr,window):
+def UpdateStatus(statusStr,window):
     window['-OUTPUT-'].update(statusStr+ "\n"+window['-OUTPUT-'].Get())
+
     
 def AddRndNum(gamePlayer):
     global  playerNumSum,computerNumSum
@@ -34,13 +35,13 @@ def AddRndNum(gamePlayer):
 
 def AddPlayerNum(window):
     nRes=AddRndNum(GamePlayer.PLAYER)
-    updateStatus(gameShowMess[1] + str(nRes) + "!总点数:"+ str(GetPlayerSum()),window) 
+    UpdateStatus(gameShowMess[1] + str(nRes) + "      总点数:"+ str(GetPlayerSum()),window) 
     return GetPlayerSum()
     
     
 def AddComputerNum(window):
     nRes=AddRndNum(GamePlayer.COMPUTER)
-    updateStatus(gameShowMess[3] + str(nRes) + "!总点数:"+ str(GetComputerSum()),window) 
+    UpdateStatus(gameShowMess[3] + str(nRes) + "      总点数:"+ str(GetComputerSum()),window) 
     return GetComputerSum()
     
 def GetPlayerSum():
@@ -48,18 +49,34 @@ def GetPlayerSum():
 def GetComputerSum():
     return computerNumSum
     
-def isGameOver():
-    computerWin=playerWin=False
+def isGameOver(isGameContine):
+    computerWin=playerWin=gameOver=False
     if  GetPlayerSum()>21 and GetComputerSum()<=21 :
         computerWin=True 
-        playerWin=False          
-    if  GetComputerSum()>21 and GetPlayerSum()<=21:
+        playerWin=False  
+        gameOver=True
+    elif  GetComputerSum()>21 and GetPlayerSum()<=21:
         computerWin=False 
         playerWin=True 
-    
-    return (computerWin,playerWin)
+        gameOver=True
+    elif  GetComputerSum()>=21 and GetPlayerSum()>=21:
+        gameOver=True
+    elif (not isGameContine):
+        if  GetComputerSum()>GetPlayerSum():
+            computerWin=True
+            playerWin=False 
+            gameOver=True  
+        elif GetComputerSum()==GetPlayerSum():
+            gameOver=True  
+        else:
+            computerWin=False 
+            playerWin=True 
+            gameOver=True   
+        
+    return (computerWin,playerWin,gameOver)
 
 def main():   
+    global playerNums,playerNumSum,computerNums,computerNumSum,computerWin,playerWin
 
     # 定义窗口内容
     layout = [  [sg.Text("您是否继续抽数？")],            
@@ -69,39 +86,64 @@ def main():
     # 创建窗口
     window = sg.Window('21点游戏', layout)      
     
-
+    isComputerContinue=True
+    isPlayerContinue=True
     #显示和与窗口交互
     while True:
-        isComputerContinue=True
-        isPlayerContinue=True
-        event, values = window.read()
+        if isPlayerContinue:
+            event, values = window.read()
         if event == sg.WIN_CLOSED or event == 'Exit': 
             break
         if isPlayerContinue: 
             if event == 'Yes':
-                updateStatus("玩家确定抽数",window)
+                UpdateStatus("玩家确定抽数",window)
             elif event == 'No':
-                updateStatus("玩家放弃抽数",window)  
+                UpdateStatus("玩家放弃抽数",window)  
                 isPlayerContinue=False      
         else:
-            updateStatus("玩家放弃抽数",window)   
-        if isComputerContinue :
-            updateStatus("电脑确定抽数",window) 
+            UpdateStatus("玩家放弃抽数",window)
+            
+        if isComputerContinue and GetComputerSum()<17:
+            UpdateStatus("电脑确定抽数",window) 
         else:
-            updateStatus("电脑放弃抽数",window) 
+            UpdateStatus("电脑放弃抽数",window) 
             isComputerContinue=False
             
         if isPlayerContinue:  
             AddPlayerNum(window)
         if isComputerContinue :
             AddComputerNum(window)
-        (cWin,pWin)=isGameOver()
+        if isComputerContinue or isPlayerContinue:
+            (cWin,pWin,isGameEnd)=isGameOver(True)
+        else:
+            (cWin,pWin,isGameEnd)=isGameOver(False)
+            isGameRestart=True         
+        isGameRestart=False
         if pWin:
-            updateStatus("玩家赢了",window)  
-            break
+            UpdateStatus("玩家赢了",window)
+            isGameRestart=True          
         elif cWin:
-            updateStatus("电脑赢了",window)   
-            break
+            UpdateStatus("电脑赢了",window)  
+            isGameRestart=True 
+        
+        if (not pWin) and (not cWin) and isGameEnd:
+            UpdateStatus("电脑和玩家都没有赢",window)
+            isGameRestart=True 
+
+                
+           
+        if  isGameRestart:
+            UpdateStatus(" 玩家总点数:"+ str(GetPlayerSum())+"！电脑总点数："+ str(GetComputerSum()),window) 
+            isComputerContinue=True
+            isPlayerContinue=True
+            playerNums=[]
+            playerNumSum=0
+            computerNums=[]
+            computerNumSum=0
+            computerWin=False
+            playerWin=False  
+            UpdateStatus("游戏重新开始",window)
+
 
   
 
@@ -110,6 +152,7 @@ def main():
     
     
     #最后从屏幕上移除
+
     window.close()   
 
 if __name__ == "__main__":
