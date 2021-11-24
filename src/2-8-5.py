@@ -17,7 +17,8 @@ GamePlayer=Enum('GamePlayer', 'COMPUTER PLAYER')
 gameShowMess=["玩家停止抽数！","玩家继续抽数：","电脑停止抽数","电脑继续抽数："]
 
 def UpdateStatus(statusStr,window):
-    window['-OUTPUT-'].update(statusStr+ "\n"+window['-OUTPUT-'].Get())
+    print(statusStr)
+    #window['-OUTPUT-'].update(statusStr+ "\n"+window['-OUTPUT-'].Get())
 
     
 def AddRndNum(gamePlayer):
