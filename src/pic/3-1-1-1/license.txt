@@ -1,4 +1,0 @@
-本目录图片开源协议如下：
-CC BY 3.0：https://creativecommons.org/licenses/by/3.0/
-gpl-3.0：http://www.gnu.org/licenses/gpl-3.0.html
-gpl-2.0：http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
