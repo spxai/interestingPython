@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-#3-1-3-1.py
+#3-1-3.py
 import sys, pygame
 import random
 import time
