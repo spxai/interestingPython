@@ -77,7 +77,7 @@ def main():
                         if window[(selX,selY)].get_text()=='?':
                             window[(selX,selY)].update('*')
                     else:
-                        if window[(selX,selY)].get_text()!=MINE_TAG:
+                        if window[(selX,selY)].get_text()=='*':
                             window[(selX,selY)].update('?',button_color=('white','green'))
             elif event=='clickCell':
                 window[(selX,selY)].update(minesInfo[selX][selY],button_color=('yellow','blue'))

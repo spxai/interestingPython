@@ -18,7 +18,7 @@ def main():
             break
         # window[(row, col)].update('New text')   # To change a button's text, use this pattern
         # For this example, change the text of the button to the board's value and turn color black
-        window[event].update(board[event[0]][event[1]], button_color=('Green','black'))
+        window[event].update(mineAroundCount[event[0]][event[1]], button_color=('Green','black'))
     
     #最后从屏幕上移除
 
