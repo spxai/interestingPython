@@ -12,7 +12,8 @@ logo = pygame.image.load(sys.path[0]+r"\pic\3-1-4\game1.png")
 pygame.display.set_icon(logo)
 bjpic = pygame.image.load(sys.path[0]+r"\pic\3-1-4\bj.jpg")
 bjpicRect = bjpic.get_rect()
-size = width, height =bjpicRect.width*10,bjpicRect.height*10
+bjpic=pygame.transform.scale(bjpic,(bjpicRect.width*0.6,bjpicRect.height*0.6))
+size = width, height =bjpicRect.width*0.6,bjpicRect.height*0.6
 screen = pygame.display.set_mode(size)
 bjpic=pygame.Surface.convert(bjpic)
 ball = pygame.image.load(sys.path[0]+r"\pic\3-1-4\game2.png")
