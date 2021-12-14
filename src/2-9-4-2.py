@@ -1,11 +1,12 @@
 # /usr/bin/env python3
 # -*- coding: utf-8 -*-
-#2-8-6-3.py
+#2-9-4-2.py
 import PySimpleGUIWeb as sg
+import evalStr
 
 
 def computeResult(comStr):
-    return ''
+    return evalStr.getResultFromStr(comStr)
     
 
 def main(): 
@@ -14,7 +15,7 @@ def main():
     numsBtLayout=[[sg.Button(i*3+j,size=(4,2),button_color=('white','green'),key=i*3+j) for j in range(1,4)] for i in range(0,3)]
     comBtLayout1= [[sg.Button('0',size=(4,2),key=0),sg.Button('.',size=(4,2),key='.')],\
         [sg.Button('(',size=(4,2),key='('),sg.Button('C',size=(4,2),key='C')],\
-        [sg.Button(')',size=(4,2),key=')')],\
+        [sg.Button(')',size=(4,2),key=')'),sg.Button('<=',size=(4,2),key='BackDel')],\
         ]
     comBtLayout2=[\
         [sg.Button('+',size=(4,2),key='+'),\
@@ -41,7 +42,9 @@ def main():
         elif event=='C':
             window['computeStr'].update('')
         elif event=='=':
-            window['computeStr'].update(computeResult(values['computeStr']))
+            window['computeStr'].update("%.2f"%computeResult(values['computeStr']))
+        elif event=='BackDel':
+            window['computeStr'].update(values['computeStr'][:-1])
 
  
  
